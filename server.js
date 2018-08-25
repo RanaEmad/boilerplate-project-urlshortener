@@ -69,7 +69,13 @@ app.post("/api/shorturl/new",function(req,res){
 
 });
 
-
+// redirect API
+app.get("/api/shorturl/:num",function(req, res){
+  var num = req.params.num;
+  Short.findOne({short:num},function(err, data){
+    res.redirect(data.url);
+  });
+});
 
 
 app.listen(port, function () {
